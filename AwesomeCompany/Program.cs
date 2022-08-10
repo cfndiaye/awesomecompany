@@ -80,8 +80,8 @@ app.MapPut("increase-salary-sql-dapper", async (int companyId, DatabaseContext c
     var transaction = await context.Database.BeginTransactionAsync();
     //SQL
     await context.Database.GetDbConnection().ExecuteAsync(
-        "UPDATE Employees SET Salary = Salary * 1.1 WHERE CompanyId = @company.Id",
-        new {CompanyId = company.Id}, transaction.GetDbTransaction());
+        "UPDATE Employees SET Salary = Salary * 1.1 WHERE CompanyId = @companyId",
+        new {companyId = company.Id}, transaction.GetDbTransaction());
 
     company.LastUpdateSalaryUtc = DateTime.UtcNow;
 
